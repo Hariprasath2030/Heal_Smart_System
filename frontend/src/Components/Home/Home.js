@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts';
 import SymptomAnalysis from '../SymptomAnalysis/SymptomAnalysis';
 import MentalWellness from '../MentalWellness/MentalWellness';
 import ConsultDoctor from '../ConsultDoctor/ConsultDoctor';
-import hero from '../../img/hero.png'
+import hero from '../../img/hero.png';
 
 function Home({ updateActive }) {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -13,62 +13,75 @@ function Home({ updateActive }) {
     setSelectedComponent(component);
   };
 
-  const renderSelectedComponent = () => {
+  useEffect(() => {
+    // Call updateActive whenever selectedComponent changes
     switch (selectedComponent) {
-      case "SymptomAnalysis":
+      case 'SymptomAnalysis':
         updateActive(2);
-        return;
-      case "MentalWellness":
+        break;
+      case 'MentalWellness':
         updateActive(3);
-        return;
-      case "ConsultDoctor":
+        break;
+      case 'ConsultDoctor':
         updateActive(4);
-        return;
+        break;
       default:
         updateActive(1);
-        return;
+    }
+  }, [selectedComponent, updateActive]);
+
+  const renderSelectedComponent = () => {
+    switch (selectedComponent) {
+      case 'SymptomAnalysis':
+        return <SymptomAnalysis />;
+      case 'MentalWellness':
+        return <MentalWellness />;
+      case 'ConsultDoctor':
+        return <ConsultDoctor />;
+      default:
+        return null;
     }
   };
 
   return (
     <HomeStyled>
-      {/* <InnerLayout> */}
       {!selectedComponent ? (
         <>
-        <HeroSection>
-          <div className='hero'>
-            <div className='des'>
-            <h3>Heal Smart:</h3>
-            <h1>Take Charge of Your Health, Mind & Body</h1>
-            <p>Feeling under the weather and not sure what's wrong? Don't worry, HealSmart is here to be your friendly health detective!</p>
+          <HeroSection>
+            <div className="hero">
+              <div className="des">
+                <h3>Heal Smart:</h3>
+                <h1>Take Charge of Your Health, Mind & Body</h1>
+                <p>
+                  Feeling under the weather and not sure what's wrong? Don't worry, HealSmart is here to be your friendly health detective!
+                </p>
+              </div>
+              <div className="des">
+                <img src={hero} alt="" />
+              </div>
             </div>
-            <div className='des'>
-              <img src={hero} alt=''></img>
-            </div>
-          </div>
-        </HeroSection>
-        <CardContainer>
-          <Card onClick={() => handleComponentClick('SymptomAnalysis')}>
-            <h2>Symptom Analysis</h2>
-            <br/>
-            <p>Analyze your symptoms and get assistance powered by AI</p>
-          </Card>
-          <Card onClick={() => handleComponentClick('MentalWellness')}>
-            <h2>Mind-Bot</h2>
-            <br/>
-            <p>Your AI Companion for Mental Wellness and guidance</p>
-          </Card>
-          <Card onClick={() => handleComponentClick('ConsultDoctor')}>
-            <h2>Consult Doctor</h2>
-            <br/>
-            <p>Explore specialists and book appointments hassle-free</p>
-          </Card>
-        </CardContainer>
+          </HeroSection>
+          <CardContainer>
+            <Card onClick={() => handleComponentClick('SymptomAnalysis')}>
+              <h2>Symptom Analysis</h2>
+              <br />
+              <p>Analyze your symptoms and get assistance powered by AI</p>
+            </Card>
+            <Card onClick={() => handleComponentClick('MentalWellness')}>
+              <h2>Mind-Bot</h2>
+              <br />
+              <p>Your AI Companion for Mental Wellness and guidance</p>
+            </Card>
+            <Card onClick={() => handleComponentClick('ConsultDoctor')}>
+              <h2>Consult Doctor</h2>
+              <br />
+              <p>Explore specialists and book appointments hassle-free</p>
+            </Card>
+          </CardContainer>
         </>
       ) : (
         renderSelectedComponent()
       )}
-      {/* </InnerLayout> */}
     </HomeStyled>
   );
 }
@@ -86,43 +99,36 @@ const HeroSection = styled.div`
   color: purple;
   text-align: center;
 
-  .hero{
+  .hero {
     height: 300px;
-    /* margin-top: 400px; */
     margin: 50px 80px;
     display: flex;
     justify-content: space-between;
-    
   }
-  .des{
+  .des {
     flex: 1;
     margin-right: 20px;
     margin-top: 50px;
   }
 
-  .des h3{
-    /* margin-right: 300px; */
-      font-size: 30px;
-      font-weight:700;
-      color: darkviolet;
+  .des h3 {
+    font-size: 30px;
+    font-weight: 700;
+    color: darkviolet;
   }
 
-  .des h1{
-    align-items: start;
+  .des h1 {
     font-weight: 700;
     font-size: 40px;
     color: darkviolet;
   }
 
-  .des p{
-    align-items: start;
+  .des p {
     color: #222260;
     font-weight: 500;
-    /* margin-right: -40px; */
   }
 
-
-  .des img{
+  .des img {
     width: 320px;
     margin-left: 110px;
     margin-top: -45px;
@@ -133,7 +139,7 @@ const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 120px 50px;
-  cursor: hover;
+  cursor: pointer;
 `;
 
 const Card = styled.div`
@@ -149,12 +155,7 @@ const Card = styled.div`
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: darkViolet;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
+    color: darkviolet;
   }
 
   h2 {

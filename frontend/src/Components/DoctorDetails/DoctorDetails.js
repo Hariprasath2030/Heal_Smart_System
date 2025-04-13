@@ -7,13 +7,12 @@ import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 const times = [
-    { "id": 1, "time": "10:00 AM", "available": true },
-    { "id": 2, "time": "11:00 AM", "available": false },
-    { "id": 3, "time": "12:00 PM", "available": true },
-    { "id": 4, "time": "01:00 PM", "available": true },
-    { "id": 5, "time": "02:00 PM", "available": false }
-  ]
-  
+  { "id": 1, "time": "10:00 AM", "available": true },
+  { "id": 2, "time": "11:00 AM", "available": false },
+  { "id": 3, "time": "12:00 PM", "available": true },
+  { "id": 4, "time": "01:00 PM", "available": true },
+  { "id": 5, "time": "02:00 PM", "available": false }
+];
 
 function DoctorDetails({ DoctorDet }) {
   const [disable, setDisable] = useState(false);
@@ -27,68 +26,64 @@ function DoctorDetails({ DoctorDet }) {
   return (
     <MentStyled>
       <InnerLayout className="main">
-        <div class="w-full max-w-sm bg-white border mx-auto my-auto border-gray-200 rounded-lg shadow dark:bg-white dark:border-white-700">
-          <div class="flex justify-end px-4 pt-4"></div>
-          <div class="flex flex-col items-center pb-10">
+        <div className="w-full max-w-sm bg-white border mx-auto my-auto border-gray-200 rounded-lg shadow dark:bg-white dark:border-white-700">
+          <div className="flex justify-end px-4 pt-4"></div>
+          <div className="flex flex-col items-center pb-10">
             <img
-              class="w-24 h-24 mb-3 rounded-full shadow-lg"
+              className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src={DoctorDet.imageUri}
-              alt="Bonnie image"
+              alt="Doctor"
             />
-            <h5 class="mb-1 text-xl font-medium text-gray-900">
+            <h5 className="mb-1 text-xl font-medium text-gray-900">
               {DoctorDet.name}
             </h5>
-            <span class="text-sm text-gray-500 dark:text-gray-400">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               {DoctorDet.specialisation}
             </span>
 
             <p className="text-gray-700 text-base">
-              {" "}
               Experience: {DoctorDet.experience}
             </p>
 
             <p className="text-gray-900 leading-none">{DoctorDet.address}</p>
-            <div class="flex mt-4 md:mt-6">
-              
-            </div>
           </div>
         </div>
 
         <div className="w-full max-w-md mx-auto mt-8 rounded-lg">
-      <table className="min-w-full">
-        <thead>
-          <tr>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Time
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Availability
-            </th>
-            <th className="px-6 py-3 bg-gray-50"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {times.map((time) => (
-            <tr key={time.id} className="bg-white">
-              <td className="px-6 py-4 whitespace-nowrap">{time.time}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {time.available ? "Available" : "Not Available"}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {time.available && (
-                  <button
-                    onClick={() => handleBookNow(time)}
-                    className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
-                  >
-                    Book Now
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          <table className="min-w-full">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Time
+                </th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Availability
+                </th>
+                <th className="px-6 py-3 bg-gray-50"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {times.map((time) => (
+                <tr key={time.id} className="bg-white">
+                  <td className="px-6 py-4 whitespace-nowrap">{time.time}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {time.available ? "Available" : "Not Available"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {time.available && (
+                      <button
+                        onClick={() => handleBookNow(time)}
+                        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
+                      >
+                        Book Now
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </InnerLayout>
     </MentStyled>
   );
@@ -111,12 +106,10 @@ const MentStyled = styled.nav`
     justify-content: space-between;
     font-size: 22px;
     padding: 20px;
-    /* color: white; */
   }
 
   .main-container {
     max-width: 900px;
-    /* padding: -70px; */
     margin: -33px 88px;
     color: black;
   }
@@ -153,7 +146,6 @@ const MentStyled = styled.nav`
     margin: 10px 40px;
     padding: 7px 17px;
     border-radius: 50px;
-    /* margin-right: 70px */
   }
 
   .search-box img {
@@ -227,6 +219,7 @@ const MentStyled = styled.nav`
     height: 20px;
     animation: loader 3s infinite linear;
   }
+
   @keyframes loader {
     0% {
       background-position: -800px 0px;
@@ -235,6 +228,7 @@ const MentStyled = styled.nav`
       background-position: 800px 0px;
     }
   }
+
   .result-data p {
     font-size: 17px;
     font-weight: 300;

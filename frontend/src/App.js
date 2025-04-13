@@ -9,6 +9,23 @@ import SymptomAnalysis from "./Components/SymptomAnalysis/SymptomAnalysis";
 import ConsultDoctor from "./Components/ConsultDoctor/ConsultDoctor";
 import "./index.css";
 
+const AppStyled = styled.div`
+  height: 100vh;
+  background-image: url(${(props) => props.$bg});
+  position: relative;
+  main {
+    flex: 1;
+    background: rgba(252, 246, 249, 0.78);
+    border: 3px solid #ffffff;
+    backdrop-filter: blur(4.5px);
+    border-radius: 32px;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+`;
+
 function App() {
   const [active, setActive] = useState(1);
   const [fil, setFil] = useState([]);
@@ -34,7 +51,7 @@ function App() {
   };
 
   return (
-    <AppStyled bg={bg} className="App">
+    <AppStyled $bg={bg} className="App"> {/* Notice the use of $bg */}
       <MainLayout>
         <Navigation active={active} setActive={setActive} />
         <main>{displayData()}</main>
@@ -42,22 +59,4 @@ function App() {
     </AppStyled>
   );
 }
-
-const AppStyled = styled.div`
-  height: 100vh;
-  background-image: url(${(props) => props.bg});
-  position: relative;
-  main {
-    flex: 1;
-    background: rgba(252, 246, 249, 0.78);
-    border: 3px solid #ffffff;
-    backdrop-filter: blur(4.5px);
-    border-radius: 32px;
-    overflow-x: hidden;
-    &::-webkit-scrollbar {
-      width: 0;
-    }
-  }
-`;
-
 export default App;

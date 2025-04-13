@@ -2,8 +2,8 @@ import { createContext, useState } from "react";
 
 export const FilterContext = createContext();
 
-const FilterContextProvider = (props) => {
-  const [doctorSpec, setDoctorSpec] = useState("");
+const FilterContextProvider = ({ children }) => {
+  const [doctorSpec, setDoctorSpec] = useState(""); // default value can be customized
 
   const contextValue = {
     doctorSpec,
@@ -12,7 +12,7 @@ const FilterContextProvider = (props) => {
 
   return (
     <FilterContext.Provider value={contextValue}>
-      {props.children}
+      {children}
     </FilterContext.Provider>
   );
 };
