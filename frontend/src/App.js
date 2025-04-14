@@ -9,6 +9,7 @@ import SymptomAnalysis from "./Components/SymptomAnalysis/SymptomAnalysis";
 import ConsultDoctor from "./Components/ConsultDoctor/ConsultDoctor";
 import "./index.css";
 
+
 const AppStyled = styled.div`
   height: 100vh;
   background-image: url(${(props) => props.$bg});
@@ -28,12 +29,11 @@ const AppStyled = styled.div`
 
 function App() {
   const [active, setActive] = useState(1);
-  const [fil, setFil] = useState([]);
+
   const updateActive = (activeState) => {
     setActive(activeState);
   };
 
-  const updateFilter = (fils) => {};
 
   const displayData = () => {
     switch (active) {

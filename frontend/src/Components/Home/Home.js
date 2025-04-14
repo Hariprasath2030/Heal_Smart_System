@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { InnerLayout } from '../../styles/Layouts';
 import SymptomAnalysis from '../SymptomAnalysis/SymptomAnalysis';
 import MentalWellness from '../MentalWellness/MentalWellness';
 import ConsultDoctor from '../ConsultDoctor/ConsultDoctor';
 import hero from '../../img/hero.png';
+import { SignedIn, UserButton } from '@clerk/clerk-react';
 
 function Home({ updateActive }) {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -45,6 +45,13 @@ function Home({ updateActive }) {
 
   return (
     <HomeStyled>
+      {/* Add User Button at the top-right */}
+      <UserButtonWrapper>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </UserButtonWrapper>
+
       {!selectedComponent ? (
         <>
           <HeroSection>
@@ -57,7 +64,7 @@ function Home({ updateActive }) {
                 </p>
               </div>
               <div className="des">
-                <img src={hero} alt="" />
+                <img src={hero} alt="Hero Image" />
               </div>
             </div>
           </HeroSection>
@@ -167,6 +174,13 @@ const Card = styled.div`
     font-size: 17px;
     color: #666;
   }
+`;
+
+// User Button Wrapper to position the UserButton component at top-right
+const UserButtonWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
 `;
 
 export default Home;
