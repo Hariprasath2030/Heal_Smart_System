@@ -35,10 +35,10 @@ function SignUpPage() {
                     {/* Back to Home Button */}
                     <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-start gap-4 text-center">
                         <Link
-                            to="/"
+                            to="/sign-in"
                             className="inline-block rounded-md  bg-indigo-600 px-8 py-3 text-sm font-semibold text-white hover:bg-black transition duration-300"
                         >
-                            Return to Home
+                            Click to Login
                         </Link>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // <-- Import Route and Routes
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './_components/Home';
-import SignIn from './_components/SignIn';  // <-- Import SignIn
-import SignUp from './_components/SignUp';  // <-- Import SignUp
+import SignIn from './_components/SignIn';
+import SignUp from './_components/SignUp';
 import App from './App'
 import { GlobalStyle } from "./styles/GlobalStyle";
 import ContextProvider from "./context/Context";
@@ -20,8 +20,13 @@ if (!clerkPublishableKey) {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+
   <React.StrictMode>
-    <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/">
+    <ClerkProvider
+      publishableKey={clerkPublishableKey}
+      signInFallbackRedirectUrl="/app"
+      signUpFallbackRedirectUrl="/sign-in"
+    >
       <BrowserRouter>
         <ContextProvider>
           <AIContextProvider>
@@ -39,4 +44,4 @@ root.render(
       </BrowserRouter>
     </ClerkProvider>
   </React.StrictMode>
-);
+)
