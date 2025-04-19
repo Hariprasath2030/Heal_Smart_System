@@ -5,9 +5,9 @@ import img from "../img/signup.jpeg"; // Replace this with your signup backgroun
 
 function SignUpPage() {
     return (
-        <div className="relative">
+        <div className="relative w-full h-screen bg-pink-500 overflow-auto">
             {/* Background Image */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 -z-10">
                 <img
                     src={img}
                     alt="Smart Health Care SignUp"
@@ -26,7 +26,7 @@ function SignUpPage() {
                 <div className="text-center lg:text-left max-w-2xl">
                     <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
 
-                        Join the <span className="text-rose-500">Smart Health Revolution</span>
+                        Join the <span className="text-black text-6xl text-bold">Smart Health Revolution</span>
                     </h1>
                     <p className="mt-4 max-w-lg text-white sm:text-xl/relaxed">
                         Sign up to manage appointments, access reports, and take charge of your health journey.
@@ -36,7 +36,7 @@ function SignUpPage() {
                     <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-start gap-4 text-center">
                         <Link
                             to="/sign-in"
-                            className="inline-block rounded-md  bg-indigo-600 px-8 py-3 text-sm font-semibold text-white hover:bg-black transition duration-300"
+                            className="inline-block rounded-md  bg-cyan-500 px-8 py-3 text-sm font-semibold text-white hover:bg-black transition duration-300"
                         >
                             Click to Login
                         </Link>
@@ -45,7 +45,7 @@ function SignUpPage() {
 
                 {/* Sign Up Box */}
                 <div className="mt-12 sm:mt-0 sm:ml-40 flex justify-center sm:justify-end">
-                    <div className="w-full sm:w-auto bg-white/10 backdrop-blur-md p-6 rounded-lg">
+                    <div className="w-full sm:w-auto bg-white/10 backdrop-blur-md p-0 rounded-lg">
                         <SignUp routing="hash" />
                     </div>
                 </div>
