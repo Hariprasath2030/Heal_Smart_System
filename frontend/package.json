@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "https://diagnoze-api.onrender.com/predict",
   "dependencies": {
-    "@clerk/clerk-react": "^5.27.0",
+    "@clerk/clerk-react": "^5.28.0",
     "@google/generative-ai": "^0.8.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
