@@ -1,5 +1,6 @@
+// App.js
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import bg from "./img/bg.png";
 import { MainLayout } from "./styles/Layouts";
 import Navigation from "./Components/Navigation/Navigation";
@@ -9,22 +10,28 @@ import SymptomAnalysis from "./Components/SymptomAnalysis/SymptomAnalysis";
 import ConsultDoctor from "./Components/ConsultDoctor/ConsultDoctor";
 import "./index.css";
 
+// Reset default browser margins and paddings
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html, #root {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+`;
 
 const AppStyled = styled.div`
-  height: 100vh;
-  background-image: url(${(props) => props.$bg});
-  position: relative;
-  main {
-    flex: 1;
-    background: rgba(252, 246, 249, 0.78);
-    border: 3px solid #ffffff;
-    backdrop-filter: blur(4.5px);
-    border-radius: 32px;
-    overflow-x: hidden;
-    &::-webkit-scrollbar {
-      width: 0;
-    }
-  }
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  flex-direction: column;
 `;
 
 function App() {
@@ -33,7 +40,6 @@ function App() {
   const updateActive = (activeState) => {
     setActive(activeState);
   };
-
 
   const displayData = () => {
     switch (active) {
@@ -51,12 +57,16 @@ function App() {
   };
 
   return (
-    <AppStyled $bg={bg} className="App"> {/* Notice the use of $bg */}
-      <MainLayout>
-        <Navigation active={active} setActive={setActive} />
-        <main>{displayData()}</main>
-      </MainLayout>
-    </AppStyled>
+    <>
+      <GlobalStyle />
+      <AppStyled>
+        <MainLayout>
+          <Navigation active={active} setActive={setActive} />
+          {displayData()}
+        </MainLayout>
+      </AppStyled>
+    </>
   );
 }
+
 export default App;

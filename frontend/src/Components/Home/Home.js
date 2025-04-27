@@ -14,7 +14,6 @@ function Home({ updateActive }) {
   };
 
   useEffect(() => {
-    // Call updateActive whenever selectedComponent changes
     switch (selectedComponent) {
       case 'SymptomAnalysis':
         updateActive(2);
@@ -45,7 +44,6 @@ function Home({ updateActive }) {
 
   return (
     <HomeStyled>
-      {/* Add User Button at the top-right */}
       <UserButtonWrapper>
         <SignedIn>
           <UserButton />
@@ -56,33 +54,31 @@ function Home({ updateActive }) {
         <>
           <HeroSection>
             <div className="hero">
-              <div className="des">
+              <div className="text-content">
                 <h3>Heal Smart:</h3>
                 <h1>Take Charge of Your Health, Mind & Body</h1>
                 <p>
                   Feeling under the weather and not sure what's wrong? Don't worry, HealSmart is here to be your friendly health detective!
                 </p>
               </div>
-              <div className="des">
-                <img src={hero} alt="Hero Image" />
+              <div className="image-content">
+                <img src={hero} alt="Hero" />
               </div>
             </div>
           </HeroSection>
+
           <CardContainer>
             <Card onClick={() => handleComponentClick('SymptomAnalysis')}>
               <h2>Symptom Analysis</h2>
-              <br />
-              <p>Analyze your symptoms and get assistance powered by AI</p>
+              <p>Analyze your symptoms and get assistance powered by AI.</p>
             </Card>
             <Card onClick={() => handleComponentClick('MentalWellness')}>
               <h2>Mind-Bot</h2>
-              <br />
-              <p>Your AI Companion for Mental Wellness and guidance</p>
+              <p>Your AI Companion for Mental Wellness and guidance.</p>
             </Card>
             <Card onClick={() => handleComponentClick('ConsultDoctor')}>
               <h2>Consult Doctor</h2>
-              <br />
-              <p>Explore specialists and book appointments hassle-free</p>
+              <p>Explore specialists and book appointments hassle-free.</p>
             </Card>
           </CardContainer>
         </>
@@ -94,89 +90,121 @@ function Home({ updateActive }) {
 }
 
 const HomeStyled = styled.div`
-  /* Your styles for the overall home page layout */
+  position: relative;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa, #e0c3fc);
 `;
 
-const HeroSection = styled.div`
-  height: 350px;
+const HeroSection = styled.section`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: purple;
+  flex-wrap: wrap;
   text-align: center;
+  margin-top: 40px;
 
   .hero {
-    height: 300px;
-    margin: 50px 80px;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
   }
-  .des {
+
+  .text-content {
     flex: 1;
-    margin-right: 20px;
-    margin-top: 50px;
+    min-width: 280px;
   }
 
-  .des h3 {
-    font-size: 30px;
+  .text-content h3 {
+    font-size: 2rem;
+    color: #6a11cb;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-content h1 {
+    font-size: 2.5rem;
     font-weight: 700;
-    color: darkviolet;
+    color: #4b0082;
+    margin-bottom: 1rem;
   }
 
-  .des h1 {
-    font-weight: 700;
-    font-size: 40px;
-    color: darkviolet;
+  .text-content p {
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
-  .des p {
-    color: #222260;
-    font-weight: 500;
+  .image-content {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
   }
 
-  .des img {
-    width: 320px;
-    margin-left: 110px;
-    margin-top: -45px;
+  .image-content img {
+    width: 300px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .text-content h1 {
+      font-size: 2rem;
+    }
+
+    .text-content p {
+      font-size: 1rem;
+    }
+
+    .image-content img {
+      width: 250px;
+    }
   }
 `;
 
 const CardContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 120px 50px;
-  cursor: pointer;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 20px;
 `;
 
 const Card = styled.div`
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: calc(33.33% - 20px);
-  transition: all 0.3s ease;
-  color: #4b0082;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    color: darkviolet;
+    transform: translateY(-8px);
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    color: #fff;
   }
 
   h2 {
-    font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
+    color: #6a11cb;
+    font-size: 1.5rem;
   }
 
   p {
-    font-size: 17px;
-    color: #666;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  &:hover h2, &:hover p {
+    color: #fff;
   }
 `;
 
-// User Button Wrapper to position the UserButton component at top-right
 const UserButtonWrapper = styled.div`
   position: absolute;
   top: 20px;

@@ -1,108 +1,93 @@
-import React from 'react'
-import styled from 'styled-components'
-import avatar from '../../img/avatar.png'
-import { menuItems } from '../../utils/menuItems'
-// import { signout } from '../../utils/Icons'
+// Navigation.js
+import React, { useState } from "react";
+import styled from "styled-components";
+import { FaBars, FaHome, FaHeartbeat, FaBrain, FaUserMd } from "react-icons/fa"; // Added icons
 
-function Navigation({active, setActive}) {
-  return (
-    <NavStyled>
-        <div className="user-con">
-            <img src={avatar} alt="loading" />
-            <div className="text">
-                <p>HealSmart</p>
-            </div>
-        </div>
-        <ul className="menu-items">
-            {menuItems.map((item) => {
-                return <li 
-                    key ={item.id}
-                    onClick={() => setActive(item.id)}
-                    className={active === item.id ? 'active': ''}
-                >
-                    {item.icon}
-                    <span>{item.title}</span>
-                </li>
-            })}
-        </ul>
-        <div className="bottom-nav">
-        </div>
-    </NavStyled>
-  )
-}
+const NavigationStyled = styled.nav`
+  width: ${(props) => (props.isOpen ? "220px" : "70px")};
+  transition: width 0.4s ease;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
-const NavStyled = styled.nav`
-    padding: 2rem 1.5rem;
-    width: 336px;
-    height: 100%;
-    background: rgba(252, 246, 249, 0.78);
-    border: 3px solid #FFFFFF;
-    backdrop-filter: blur(4.5px);
-    border-radius: 32px;
+  .menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  li {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 2rem;
-    .user-con{
-        height: 100px;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        img{
-            margin-right: -2px;
-            width: 60px;
-            height: 60px;
-            border-radius: 40%;
-            object-fit: cover;
-            background: #fcf6f9;
-            border: 0.3px solid #FFFFFF;
-            padding: .15rem;
-            box-shadow: 0px 1px 17px rgba(0, 0, 0, 0.06);
-        }
-        p{
-            color: darkViolet;
-            font-weight: 900;
-            font-size: 37px;
-        }
+    align-items: center;
+    gap: ${(props) => (props.isOpen ? "1rem" : "0")};
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    transition: background 0.3s, padding-left 0.3s;
+    padding-left: ${(props) => (props.isOpen ? "1.5rem" : "1rem")};
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
     }
-    .menu-items{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        li{
-            display: grid;
-            grid-template-columns: 40px auto;
-            align-items: center;
-            margin: .6rem 0;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all .4s ease-in-out;
-            color: rgba(34, 34, 96, .6);
-            padding-left: 1rem;
-            position: relative;
-            i{
-                color: rgba(34, 34, 96, .6);
-                font-size: 1.4rem;
-                transition: all .4s ease-in-out;
-            }
-        }
+
+    svg {
+      font-size: 1.3rem;
     }
-    .active{
-        color: rgba(34, 34, 96, 1) !important;
-        i{
-            color: rgba(34, 34, 96, 1) !important;
-        }
-        &::before{
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: #222260;
-            border-radius: 0 10px 10px 0;
-        }
+
+    span {
+      display: ${(props) => (props.isOpen ? "inline" : "none")};
     }
+  }
+
+  @media (max-width: 768px) {
+    width: ${(props) => (props.isOpen ? "160px" : "60px")};
+  }
 `;
 
-export default Navigation
+function Navigation({ active, setActive }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <NavigationStyled isOpen={isOpen}>
+      <FaBars className="menu-icon" onClick={toggleMenu} />
+      <ul>
+        <li onClick={() => setActive(1)}>
+          <FaHome /> <span>Home</span>
+        </li>
+        <li onClick={() => setActive(2)}>
+          <FaHeartbeat /> <span>Symptom Analysis</span>
+        </li>
+        <li onClick={() => setActive(3)}>
+          <FaBrain /> <span>Mental Wellness</span>
+        </li>
+        <li onClick={() => setActive(4)}>
+          <FaUserMd /> <span>Consult Doctor</span>
+        </li>
+      </ul>
+    </NavigationStyled>
+  );
+}
+
+export default Navigation;

@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/clerk-react';
 
-// Import your background image
-import backgroundImage from '../img/home.jpeg'; // <-- Update to correct path!
+import backgroundImage from '../img/home.jpeg';
 
 export default function Home() {
-    const { isSignedIn } = useUser();  // 👈 get the sign-in status
-    const navigate = useNavigate();    // 👈 for navigation
+    const { isSignedIn } = useUser(); 
+    const navigate = useNavigate();  
 
     useEffect(() => {
         if (isSignedIn) {
-            navigate('/app');  // 👈 Redirect to your dashboard or app page
+            navigate('/app');  
         }
     }, [isSignedIn, navigate]);
 
