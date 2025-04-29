@@ -5,11 +5,18 @@ import send_icon from '../../img/send_icon.png'
 import user_icon from '../../img/user_icon.png'
 import gemini_icon from '../../img/gemini_icon.png'
 import { Context } from '../../context/Context';
-
+import Navigation from "../Navigation/Navigation";
+import { MainLayout } from "../../styles/Layouts";
 function MentalWellness() {
+  
+        const [active, setActive] = React.useState(1);
   const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
 
   return (
+    <>
+    <MainLayout>
+          <Navigation active={active} setActive={setActive} />
+        </MainLayout>
     <MentStyled>
       <InnerLayout className='main'>
         <div className='nav'>
@@ -56,6 +63,7 @@ function MentalWellness() {
         </div>
       </InnerLayout>
     </MentStyled>  
+  </>
   )
 }
 

@@ -1,48 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import SymptomAnalysis from '../SymptomAnalysis/SymptomAnalysis';
-import MentalWellness from '../MentalWellness/MentalWellness';
-import ConsultDoctor from '../ConsultDoctor/ConsultDoctor';
+import { useNavigate } from 'react-router-dom';
 import hero from '../../img/hero.png';
 import { SignedIn, UserButton } from '@clerk/clerk-react';
+import Navigation from "../Navigation/Navigation";
+import { MainLayout } from "../../styles/Layouts";
 
-function Home({ updateActive }) {
-  const [selectedComponent, setSelectedComponent] = useState(null);
 
-  const handleComponentClick = (component) => {
-    setSelectedComponent(component);
-  };
-
-  useEffect(() => {
-    switch (selectedComponent) {
-      case 'SymptomAnalysis':
-        updateActive(2);
-        break;
-      case 'MentalWellness':
-        updateActive(3);
-        break;
-      case 'ConsultDoctor':
-        updateActive(4);
-        break;
-      default:
-        updateActive(1);
-    }
-  }, [selectedComponent, updateActive]);
-
-  const renderSelectedComponent = () => {
-    switch (selectedComponent) {
-      case 'SymptomAnalysis':
-        return <SymptomAnalysis />;
-      case 'MentalWellness':
-        return <MentalWellness />;
-      case 'ConsultDoctor':
-        return <ConsultDoctor />;
-      default:
-        return null;
-    }
-  };
+function Home() {
+  
+    const [active, setActive] = React.useState(1);
+  const navigate = useNavigate();
 
   return (
+    <>
+       <MainLayout>
+          <Navigation active={active} setActive={setActive} />
+        </MainLayout>
     <HomeStyled>
       <UserButtonWrapper>
         <SignedIn>
@@ -50,42 +24,37 @@ function Home({ updateActive }) {
         </SignedIn>
       </UserButtonWrapper>
 
-      {!selectedComponent ? (
-        <>
-          <HeroSection>
-            <div className="hero">
-              <div className="text-content">
-                <h3>Heal Smart:</h3>
-                <h1>Take Charge of Your Health, Mind & Body</h1>
-                <p>
-                  Feeling under the weather and not sure what's wrong? Don't worry, HealSmart is here to be your friendly health detective!
-                </p>
-              </div>
-              <div className="image-content">
-                <img src={hero} alt="Hero" />
-              </div>
-            </div>
-          </HeroSection>
+      <HeroSection>
+        <div className="hero">
+          <div className="text-content">
+            <h3>Heal Smart:</h3>
+            <h1>Take Charge of Your Health, Mind & Body</h1>
+            <p>
+              Feeling under the weather and not sure what's wrong? Don't worry, HealSmart is here to be your friendly health detective!
+            </p>
+          </div>
+          <div className="image-content">
+            <img src={hero} alt="Hero" />
+          </div>
+        </div>
+      </HeroSection>
 
-          <CardContainer>
-            <Card onClick={() => handleComponentClick('SymptomAnalysis')}>
-              <h2>Symptom Analysis</h2>
-              <p>Analyze your symptoms and get assistance powered by AI.</p>
-            </Card>
-            <Card onClick={() => handleComponentClick('MentalWellness')}>
-              <h2>Mind-Bot</h2>
-              <p>Your AI Companion for Mental Wellness and guidance.</p>
-            </Card>
-            <Card onClick={() => handleComponentClick('ConsultDoctor')}>
-              <h2>Consult Doctor</h2>
-              <p>Explore specialists and book appointments hassle-free.</p>
-            </Card>
-          </CardContainer>
-        </>
-      ) : (
-        renderSelectedComponent()
-      )}
+      <CardContainer>
+        <Card onClick={() => navigate("/SymptomAnalysis")}>
+          <h2>Symptom Analysis</h2>
+          <p>Analyze your symptoms and get assistance powered by AI.</p>
+        </Card>
+        <Card onClick={() => navigate("/MentalWellness")}>
+          <h2>Mind-Bot</h2>
+          <p>Your AI Companion for Mental Wellness and guidance.</p>
+        </Card>
+        <Card onClick={() => navigate("/ConsultDoctor")}>
+          <h2>Consult Doctor</h2>
+          <p>Explore specialists and book appointments hassle-free.</p>
+        </Card>
+      </CardContainer>
     </HomeStyled>
+    </>
   );
 }
 

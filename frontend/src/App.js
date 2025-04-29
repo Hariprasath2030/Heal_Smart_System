@@ -1,16 +1,18 @@
 // App.js
-import React, { useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import bg from "./img/bg.png";
-import { MainLayout } from "./styles/Layouts";
-import Navigation from "./Components/Navigation/Navigation";
-import Home from "./Components/Home/Home";
-import MentalWellness from "./Components/MentalWellness/MentalWellness";
+import React from "react";
+import { Routes, Route} from "react-router-dom"; // ✅ Added Navigate for catch-all
+import Homes from "./Components/Home/Home";
 import SymptomAnalysis from "./Components/SymptomAnalysis/SymptomAnalysis";
+import MentalWellness from "./Components/MentalWellness/MentalWellness";
 import ConsultDoctor from "./Components/ConsultDoctor/ConsultDoctor";
+
+import Home from './_components/Home';
+import SignIn from './_components/SignIn';
+import SignUp from './_components/SignUp';
 import "./index.css";
 
-// Reset default browser margins and paddings
+import styled, { createGlobalStyle } from "styled-components";
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -35,35 +37,26 @@ const AppStyled = styled.div`
 `;
 
 function App() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = React.useState(1);
 
   const updateActive = (activeState) => {
     setActive(activeState);
-  };
-
-  const displayData = () => {
-    switch (active) {
-      case 1:
-        return <Home updateActive={updateActive} />;
-      case 2:
-        return <SymptomAnalysis updateActive={updateActive} />;
-      case 3:
-        return <MentalWellness updateActive={updateActive} />;
-      case 4:
-        return <ConsultDoctor updateActive={updateActive} />;
-      default:
-        return <Home />;
-    }
   };
 
   return (
     <>
       <GlobalStyle />
       <AppStyled>
-        <MainLayout>
-          <Navigation active={active} setActive={setActive} />
-          {displayData()}
-        </MainLayout>
+       
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/Home" element={<Homes updateActive={updateActive} />} />
+            <Route path="/SymptomAnalysis" element={<SymptomAnalysis />} /> {/* ✅ exact path */}
+             <Route path="/MentalWellness" element={<MentalWellness />} />
+             <Route path="/ConsultDoctor" element={<ConsultDoctor />} />
+            </Routes>
       </AppStyled>
     </>
   );

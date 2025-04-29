@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './_components/Home';
-import SignIn from './_components/SignIn';
-import SignUp from './_components/SignUp';
+import { BrowserRouter} from "react-router-dom";
 import App from './App'
-import { GlobalStyle } from "./styles/GlobalStyle";
 import ContextProvider from "./context/Context";
 import AIContextProvider from "./context/AIContext";
 import FilterContextProvider from "./context/FilterContext";
@@ -24,20 +20,14 @@ root.render(
   <React.StrictMode>
     <ClerkProvider
       publishableKey={clerkPublishableKey}
-      signInFallbackRedirectUrl="/app"
+      signInFallbackRedirectUrl="/Home"
       signUpFallbackRedirectUrl="/sign-in"
     >
       <BrowserRouter>
         <ContextProvider>
           <AIContextProvider>
             <FilterContextProvider>
-              <GlobalStyle />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/app" element={<App />} />
-              </Routes>
+              <App/>
             </FilterContextProvider>
           </AIContextProvider>
         </ContextProvider>

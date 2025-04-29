@@ -15,6 +15,7 @@ const times = [
 ];
 
 function DoctorDetails({ DoctorDet }) {
+      const [active, setActive] = React.useState(1);
   const [disable, setDisable] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
 
@@ -24,6 +25,8 @@ function DoctorDetails({ DoctorDet }) {
   };
 
   return (
+    <>
+        
     <MentStyled>
       <InnerLayout className="main">
         <div className="w-full max-w-sm bg-white border mx-auto my-auto border-gray-200 rounded-lg shadow dark:bg-white dark:border-white-700">
@@ -86,6 +89,7 @@ function DoctorDetails({ DoctorDet }) {
         </div>
       </InnerLayout>
     </MentStyled>
+    </>
   );
 }
 

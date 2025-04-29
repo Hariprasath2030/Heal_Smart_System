@@ -10,7 +10,8 @@ import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import DoctorDetails from "../DoctorDetails/DoctorDetails";
 import { FilterContext } from "../../context/FilterContext";
-
+import Navigation from "../Navigation/Navigation";
+import { MainLayout } from "../../styles/Layouts";
 function ConsultDoctor({ updateFilter }) {
   const { doctorSpec, setDoctorSpec } = useContext(FilterContext);
 
@@ -19,7 +20,7 @@ function ConsultDoctor({ updateFilter }) {
   const [selectedDoctor, setSelectedDoctor] = useState(doctorSpec);
   const [showDoctorDetails, setShowDoctorDetails] = useState(false);
   const [DoctorDet, setDoctorDet] = useState([]);
-
+    const [active, setActive] = React.useState(1);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -76,6 +77,9 @@ function ConsultDoctor({ updateFilter }) {
 
   return (
     <>
+     <MainLayout>
+          <Navigation active={active} setActive={setActive} />
+        </MainLayout>
       {!showDoctorDetails && (
         <DashboardStyled>
           <div className="heading">

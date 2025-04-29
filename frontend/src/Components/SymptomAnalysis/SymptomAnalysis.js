@@ -5,7 +5,8 @@ import AIConsult from "./AIConsult";
 import { notes } from "../../utils/Icons";
 import { FilterContext } from "../../context/FilterContext";
 import { AIContext } from "../../context/AIContext";
-
+import Navigation from "../Navigation/Navigation";
+import { MainLayout } from "../../styles/Layouts";
 let DiseaseMapping = {
   Psoriasis: "Dermatologist",
 
@@ -41,7 +42,7 @@ function SymptomAnalysis({ updateActive }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredSymptoms, setFilteredSymptoms] = useState([]);
   const [consultAI, setConsultAI] = useState(false);
-
+        const [active, setActive] = React.useState(1);
   // Function to handle selection of symptoms
   const handleSelectSymptom = (symptom) => {
     if (!selectedSymptoms.includes(symptom)) {
@@ -179,6 +180,9 @@ function SymptomAnalysis({ updateActive }) {
 
   return (
     <>
+     <MainLayout>
+          <Navigation active={active} setActive={setActive} />
+        </MainLayout>
       {!submitted && (
         <SymptomAnalysisStyled>
           <div className="heading">

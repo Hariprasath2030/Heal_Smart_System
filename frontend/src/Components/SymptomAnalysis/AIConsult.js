@@ -6,7 +6,11 @@ import user_icon from "../../img/user_icon.png";
 import gemini_icon from "../../img/gemini_icon.png";
 import { AIContext } from "../../context/AIContext";
 
+import Navigation from "../Navigation/Navigation";
+import { MainLayout } from "../../styles/Layouts";
 function AIConsult({ symptoms, diagnosis }) {
+  
+          const [active, setActive] = React.useState(1);
   const {
     onSent,
     recentPrompt,
@@ -36,7 +40,11 @@ function AIConsult({ symptoms, diagnosis }) {
   }, []);
 
   return (
-    <MentStyled>
+    <>
+     <MainLayout>
+          <Navigation active={active} setActive={setActive} />
+        </MainLayout>
+        <MentStyled>
       <InnerLayout className="main">
         <div className="nav">
           <h3>AI Consultation</h3>
@@ -87,6 +95,7 @@ function AIConsult({ symptoms, diagnosis }) {
         </div>
       </InnerLayout>
     </MentStyled>
+    </>
   );
 }
 

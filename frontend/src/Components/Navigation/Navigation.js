@@ -1,92 +1,57 @@
 // Navigation.js
-import React, { useState } from "react";
-import styled from "styled-components";
-import { FaBars, FaHome, FaHeartbeat, FaBrain, FaUserMd } from "react-icons/fa"; // Added icons
-
-const NavigationStyled = styled.nav`
-  width: ${(props) => (props.isOpen ? "220px" : "70px")};
-  transition: width 0.4s ease;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
-  border-right: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 1rem;
-  min-height: 100vh;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  .menu-icon {
-    font-size: 2rem;
-    cursor: pointer;
-    margin-bottom: 2rem;
-    transition: transform 0.3s ease;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: ${(props) => (props.isOpen ? "1rem" : "0")};
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1.1rem;
-    white-space: nowrap;
-    transition: background 0.3s, padding-left 0.3s;
-    padding-left: ${(props) => (props.isOpen ? "1.5rem" : "1rem")};
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-    }
-
-    svg {
-      font-size: 1.3rem;
-    }
-
-    span {
-      display: ${(props) => (props.isOpen ? "inline" : "none")};
-    }
-  }
-
-  @media (max-width: 768px) {
-    width: ${(props) => (props.isOpen ? "160px" : "60px")};
-  }
-`;
+import React from "react";
+import { FaHome, FaHeartbeat, FaBrain, FaUserMd } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Navigation({ active, setActive }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const handleClick = (pageNumber, path) => {
+    setActive(pageNumber);
+    navigate(path);
   };
 
   return (
-    <NavigationStyled isOpen={isOpen}>
-      <FaBars className="menu-icon" onClick={toggleMenu} />
-      <ul>
-        <li onClick={() => setActive(1)}>
-          <FaHome /> <span>Home</span>
+    <nav className="w-full h-[70px] bg-gradient-to-r from-purple-700 to-blue-500 text-white flex items-center justify-between px-5 sticky top-0 z-50 shadow-md">
+      <div
+        className="text-2xl font-bold flex items-center gap-2 cursor-pointer"
+        onClick={() => handleClick(1, "/Home")}
+      >
+        <FaHome />
+        Heal Smart
+      </div>
+
+      <ul className="list-none flex gap-8 items-center">
+        <li
+          onClick={() => handleClick(1, "/Home")}
+          className="flex items-center gap-2 cursor-pointer text-lg hover:text-yellow-300 transition"
+        >
+          <FaHome />
+          Home
         </li>
-        <li onClick={() => setActive(2)}>
-          <FaHeartbeat /> <span>Symptom Analysis</span>
+        <li
+          onClick={() => handleClick(2, "/SymptomAnalysis")}
+          className="flex items-center gap-2 cursor-pointer text-lg hover:text-yellow-300 transition"
+        >
+          <FaHeartbeat />
+          Symptom Analysis
         </li>
-        <li onClick={() => setActive(3)}>
-          <FaBrain /> <span>Mental Wellness</span>
+        <li
+          onClick={() => handleClick(3, "/MentalWellness")}
+          className="flex items-center gap-2 cursor-pointer text-lg hover:text-yellow-300 transition"
+        >
+          <FaBrain />
+          Mental Wellness
         </li>
-        <li onClick={() => setActive(4)}>
-          <FaUserMd /> <span>Consult Doctor</span>
+        <li
+          onClick={() => handleClick(4, "/ConsultDoctor")}
+          className="flex items-center gap-2 cursor-pointer text-lg hover:text-yellow-300 transition"
+        >
+          <FaUserMd />
+          Consult Doctor
         </li>
       </ul>
-    </NavigationStyled>
+    </nav>
   );
 }
 
