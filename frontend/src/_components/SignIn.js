@@ -42,13 +42,13 @@ function SignInPage() {
               to="/sign-up"
               className="rounded-lg bg-cyan-500 hover:bg-cyan-600 text-white font-medium px-6 py-3 transition-shadow shadow-md hover:shadow-lg"
             >
-              Join Heal-Smart AI
+              Register with Smart AI-Health
             </Link>
           </div>
         </div>
 
         {/* Sign In Card with Blur */}
-        <div className="w-full max-w-md p-6 sm:p-8 rounded-2xl border border-white/30 bg-white/40 shadow-xl backdrop-blur-lg">
+        <div className="w-full max-w-md p-0 sm:p-8 rounded-2xl border border-white/30 bg-white/40 shadow-xl backdrop-blur-lg">
           <SignIn
             routing="hash"
             appearance={{

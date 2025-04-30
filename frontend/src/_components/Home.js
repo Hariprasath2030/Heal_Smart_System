@@ -22,38 +22,33 @@ export default function Home() {
             }}
         >
             {/* Background Overlay */}
-            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
             {/* Content */}
             <div className="relative max-w-3xl text-center z-10">
-                <h1 className="text-4xl md:text-5xl font-bold text-indigo-700 mb-6 animate-fadeIn">
+                <h1 className="text-4xl md:text-5xl font-bold  text-emerald-500 mb-6 animate-fadeIn">
                     Welcome to AI Smart Healthcare
                 </h1>
-                <p className="text-lg md:text-xl text-gray-700 mb-8">
+                <p className="text-lg md:text-xl text-white mb-8">
                     Empowering health through intelligent AI solutions.
                     Accessible, efficient, and personalized care for everyone.
                 </p>
 
-                {/* SignedOut section */}
                 <SignedOut>
-                    <div className="flex gap-4 justify-center mt-4">
-                        <Link to="/sign-up">
-                            <button className="px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-black transition">
-                                Sign Up
-                            </button>
-                        </Link>
-                        <Link to="/sign-in">
-                            <button className="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-full hover:bg-indigo-50 transition">
-                                Sign In
-                            </button>
-                        </Link>
-                    </div>
-                </SignedOut>
+    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+        <Link to="/sign-up">
+            <button className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold rounded-full shadow-lg hover:from-green-600 hover:to-emerald-500 transition duration-300">
+                Sign Up
+            </button>
+        </Link>
+        <Link to="/sign-in">
+            <button className="w-full sm:w-auto px-8 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-900 transition duration-300">
+                Sign In
+            </button>
+        </Link>
+    </div>
+</SignedOut>
 
-                {/* SignedIn section */}
-                <SignedIn>
-                    <UserButton />
-                </SignedIn>
             </div>
         </div>
     );

@@ -44,6 +44,7 @@ function Navigation({ active, setActive }) {
           <FaBrain />
           Mental Wellness
         </li>
+        
         <li
           onClick={() => handleClick(4, "/ConsultDoctor")}
           className="flex items-center gap-2 cursor-pointer text-lg hover:text-yellow-300 transition"
@@ -53,8 +54,13 @@ function Navigation({ active, setActive }) {
         </li>
         <li>
         <SignedIn>
-        <UserButton />
-        </SignedIn>
+    <div className="flex justify-center mt-1">
+        <div className="bg-white rounded-full shadow-lg p-2 hover:shadow-xl transition duration-200">
+            <UserButton/>
+        </div>
+    </div>
+</SignedIn>
+
         </li>
       </ul>
     </nav>

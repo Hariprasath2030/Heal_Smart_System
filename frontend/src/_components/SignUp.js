@@ -41,7 +41,7 @@ function SignUpPage() {
         </div>
 
         {/* Sign Up Card with Blur */}
-        <div className="w-full max-w-md p-6 sm:p-8 rounded-2xl border border-white/30 bg-white/40 shadow-xl backdrop-blur-lg">
+        <div className="w-full max-w-md p-0 sm:p-8 rounded-2xl border border-white/30 bg-white/40 shadow-xl backdrop-blur-lg">
           <SignUp
             routing="hash"
             appearance={{
