@@ -4,54 +4,58 @@ import { Link } from 'react-router-dom';
 import img from "../img/signup.jpeg"; // Replace this with your signup background image
 
 function SignUpPage() {
-    return (
-        <div className="relative w-full h-screen bg-pink-500 overflow-auto">
-            {/* Background Image */}
-            <div className="absolute inset-0 -z-10">
-                <img
-                    src={img}
-                    alt="Smart Health Care SignUp"
-                    fill
-                    quality={100}
-                    className="w-full h-full object-cover blur-sm brightness-75"
-                    loading="eager"
-                />
-            </div>
+  return (
+    <div className="relative w-full h-screen bg-gray-100 overflow-auto font-sans">
+      {/* Background Image with Light Overlay */}
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={img}
+          alt="Smart Health Care SignUp"
+          className="w-full h-full object-cover opacity-20"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-white bg-opacity-70" />
+      </div>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/50" />
+      {/* Main Content */}
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen px-6 lg:px-20 py-10 gap-12">
+        {/* Text Section */}
+        <div className="text-center lg:text-left max-w-2xl">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-800 leading-tight">
+            Join the <br />
+            <span className="text-emerald-600">Smart Health Revolution</span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-700">
+            Sign up to manage appointments, access reports, and take charge of your health journey.
+          </p>
 
-            {/* Content */}
-            <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-                <div className="text-center lg:text-left max-w-2xl">
-                    <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
-
-                        Join the <span className="text-black text-6xl text-bold">Smart Health Revolution</span>
-                    </h1>
-                    <p className="mt-4 max-w-lg text-white sm:text-xl/relaxed">
-                        Sign up to manage appointments, access reports, and take charge of your health journey.
-                    </p>
-
-                    {/* Back to Home Button */}
-                    <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-start gap-4 text-center">
-                        <Link
-                            to="/sign-in"
-                            className="inline-block rounded-md  bg-cyan-500 px-8 py-3 text-sm font-semibold text-white hover:bg-black transition duration-300"
-                        >
-                            Click to Login
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Sign Up Box */}
-                <div className="mt-12 sm:mt-0 sm:ml-40 flex justify-center sm:justify-end">
-                    <div className="w-full sm:w-auto bg-white/10 backdrop-blur-md p-0 rounded-lg">
-                        <SignUp routing="hash" />
-                    </div>
-                </div>
-            </div>
+          {/* CTA */}
+          <div className="mt-8 flex flex-col sm:flex-row sm:justify-start items-center gap-4">
+            <Link
+              to="/sign-in"
+              className="rounded-lg bg-cyan-500 hover:bg-cyan-600 text-white font-medium px-6 py-3 transition-shadow shadow-md hover:shadow-lg"
+            >
+              Click to Login
+            </Link>
+          </div>
         </div>
-    );
+
+        {/* Sign Up Card with Blur */}
+        <div className="w-full max-w-md p-6 sm:p-8 rounded-2xl border border-white/30 bg-white/40 shadow-xl backdrop-blur-lg">
+          <SignUp
+            routing="hash"
+            appearance={{
+              elements: {
+                card: "bg-transparent shadow-none",
+                formButtonPrimary:
+                  "bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 rounded-md",
+              },
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default SignUpPage;

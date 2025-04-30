@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import hero from '../../img/hero.png';
-import { SignedIn, UserButton } from '@clerk/clerk-react';
 import Navigation from "../Navigation/Navigation";
 import { MainLayout } from "../../styles/Layouts";
 
@@ -18,11 +17,6 @@ function Home() {
           <Navigation active={active} setActive={setActive} />
         </MainLayout>
     <HomeStyled>
-      <UserButtonWrapper>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </UserButtonWrapper>
 
       <HeroSection>
         <div className="hero">
@@ -174,10 +168,5 @@ const Card = styled.div`
   }
 `;
 
-const UserButtonWrapper = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-`;
 
 export default Home;

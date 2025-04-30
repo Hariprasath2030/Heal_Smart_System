@@ -42,8 +42,8 @@ function AIConsult({ symptoms, diagnosis }) {
   return (
     <>
      <MainLayout>
-          <Navigation active={active} setActive={setActive} />
-        </MainLayout>
+          {/* <Navigation active={active} setActive={setActive} /> */}
+          </MainLayout>
         <MentStyled>
       <InnerLayout className="main">
         <div className="nav">

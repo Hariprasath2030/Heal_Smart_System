@@ -1,11 +1,11 @@
 // App.js
+// import "@fontsource/inter/variable.css";
 import React from "react";
 import { Routes, Route} from "react-router-dom"; // ✅ Added Navigate for catch-all
 import Homes from "./Components/Home/Home";
 import SymptomAnalysis from "./Components/SymptomAnalysis/SymptomAnalysis";
 import MentalWellness from "./Components/MentalWellness/MentalWellness";
 import ConsultDoctor from "./Components/ConsultDoctor/ConsultDoctor";
-
 import Home from './_components/Home';
 import SignIn from './_components/SignIn';
 import SignUp from './_components/SignUp';

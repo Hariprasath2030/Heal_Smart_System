@@ -2,6 +2,7 @@
 import React from "react";
 import { FaHome, FaHeartbeat, FaBrain, FaUserMd } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { SignedIn, UserButton } from '@clerk/clerk-react';
 
 function Navigation({ active, setActive }) {
   const navigate = useNavigate();
@@ -49,6 +50,11 @@ function Navigation({ active, setActive }) {
         >
           <FaUserMd />
           Consult Doctor
+        </li>
+        <li>
+        <SignedIn>
+        <UserButton />
+        </SignedIn>
         </li>
       </ul>
     </nav>
